@@ -1,0 +1,10 @@
+class Solution {
+public:
+    string toLowerCase(string s) {
+        for(auto &c : s)
+            if(c >= 'A' && c <= 'Z')
+                c += 32;
+        return s;
+    }
+};
+//https://leetcode.com/problems/to-lower-case/

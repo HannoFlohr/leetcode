@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minDeletionSize(vector<string>& strs) {
+        int deleted = 0;
+
+        for(int column = 0; column < strs[0].size(); column++)
+            for(int row = 1; row < strs.size(); row++)
+                if(strs[row-1][column] > strs[row][column]) {
+                    deleted++;
+                    break;
+                }
+
+        return deleted;
+    }
+};
+//https://leetcode.com/problems/delete-columns-to-make-sorted/

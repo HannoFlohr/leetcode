@@ -7,15 +7,17 @@ public:
         int i=0;
         
         while(i >= 0) {
-            v[i]++;
+            ++v[i];
             
             //move index left if value is > n
-            if(v[i] > n) i--;
+            if(v[i] > n) 
+                --i;
             //add valid combination
-            else if(i == k-1) combinations.push_back(v);
+            else if(i == k-1) 
+                combinations.push_back(v);
             //move index right and set value 
             else {
-                i++;
+                ++i;
                 v[i] = v[i-1];
             }
         }

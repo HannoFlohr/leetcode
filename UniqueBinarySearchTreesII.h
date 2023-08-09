@@ -12,33 +12,32 @@
 class Solution {
 private: 
     vector<TreeNode*> generateTrees(int start, int end) {
-        vector<TreeNode*> results;
-        
         if(end - start < 0) 
-            results.push_back(NULL);
-        else if(end - start == 0) 
-            results.push_back(new TreeNode(start));
-        else {
-            vector<TreeNode*> left, right;
-            TreeNode* node;
+            return {NULL};
+        if(end - start == 0) 
+            return {new TreeNode(start)};
+        
+        vector<TreeNode*> bsts, left_trees, right_trees;
+        TreeNode* node;
             
-            for(int i=start; i<=end; i++) {
-                left = generateTrees(start, i-1);
-                right = generateTrees(i+1, end);
+        for(int i = start; i <= end; ++i) {
+            left_trees = generateTrees(start, i-1);
+            right_trees = generateTrees(i+1, end);
                 
-                for(int j=0; j<left.size(); j++)
-                    for(int k=0; k<right.size(); k++) {
-                        node = new TreeNode(i);
-                        node->left = left[j];
-                        node->right = right[k];
+            for(const auto& left : left_trees)
+                for(const auto& right : right_trees) {
+                    node = new TreeNode(i);
+                    node->left = left;
+                    node->right = right;
                         
-                        results.push_back(node);
-                    }
-            }
+                    bsts.push_back(node);
+                }
         }
         
-        return results;
+        return bsts;
     }
+
+    //possible improvement, memorize start-end pairs and dont compute multiple times (mainly for larger n)
     
 public:
     vector<TreeNode*> generateTrees(int n) {

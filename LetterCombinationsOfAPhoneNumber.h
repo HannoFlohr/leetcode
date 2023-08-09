@@ -1,21 +1,20 @@
 class Solution {
-
-const vector<string> buttons = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-
 public:
     vector<string> letterCombinations(string digits) {
-        if(digits.empty()) return {};
-        
+        if(digits.empty()) 
+            return {};
+
+        const vector<string> buttons = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         vector<string> result;
         result.push_back("");
         
-        for(auto d : digits) {
+        for(const char& digit : digits) {
             vector<string> cur;
-            for(auto c : buttons[d-'0']) 
-                for(auto r : result)
-                    cur.push_back(r + c);
+            for(const char& ch : buttons[digit-'0']) 
+                for(const string& r : result)
+                    cur.push_back(r + ch);
             
-            result.swap(cur);
+            result = cur;
         }
         
         return result;

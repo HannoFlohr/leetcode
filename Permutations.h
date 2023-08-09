@@ -1,23 +1,22 @@
 class Solution {
 private:
-    vector<vector<int>> permutations;
-    
-    void makePermutation(vector<int>& nums, int start) {
+    void makePermutation(vector<int>& nums, int start, vector<vector<int>>& permutations) {
         if(start >= nums.size()) {
             permutations.push_back(nums);
             return;
         }
         
-        for(int i=start; i<nums.size(); i++) {
+        for(int i = start; i < nums.size(); ++i) {
             swap(nums[start], nums[i]);
-            makePermutation(nums, start+1);
+            makePermutation(nums, start+1, permutations);
             swap(nums[start], nums[i]);
         }
     }
     
 public:
     vector<vector<int>> permute(vector<int>& nums) {
-        makePermutation(nums, 0);
+        vector<vector<int>> permutations;
+        makePermutation(nums, 0, permutations);
         return permutations;
     }
 };

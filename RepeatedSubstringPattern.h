@@ -1,16 +1,16 @@
 class Solution {
 public:
     bool repeatedSubstringPattern(string s) {
-        vector<int> dp (s.size()+1, 0); 
-        int i = 1, j = 0, n = s.size();
+        int current = 1, compare = 0, n = s.size();
+        vector<int> dp (n+1, 0); 
         
-        while(i < n) {
-            if(s[i] == s[j]) 
-                dp[++i] = ++j;
-            else if(j == 0)
-                i++;
+        while(current < n) {
+            if(s[current] == s[compare]) 
+                dp[++current] = ++compare;
+            else if(compare == 0)
+                ++current;
             else
-                j = dp[j];
+                compare = dp[compare];
         }
         
         return dp[n] && dp[n] % (n - dp[n]) == 0;

@@ -10,7 +10,7 @@ private:
 
 public:
     int numMusicPlaylists(int n, int goal, int k) {
-        vector<vector<long>> dp (n+1, vector<long>(goal+1, 0));
+        vector<vector<long>> dp (n+1, vector<long>(goal+1, 0)); //dp(i,j): i songs with j different songs 
     
         for(int i = k+1; i <= n; ++i) {
             for(int j = i; j <= goal; ++j) {

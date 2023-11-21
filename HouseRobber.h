@@ -5,7 +5,7 @@ public:
         
         for(auto &n : nums){
             z = x;
-            x = max(y +n, x);
+            x = max(y + n, x);
             y = z;
         }
 

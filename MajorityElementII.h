@@ -1,30 +1,34 @@
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        int first=-1, second=-1, countFirst=0, countSecond=0;
+        int first = -1, second = -1, count_first = 0, count_second = 0;
         
-        for(auto &n : nums) {
+        for(int n : nums) {
             if(n == first) 
-                countFirst++;
+                count_first++;
             else if(n == second) 
-                countSecond++;
-            else if(countFirst == 0) 
-                first = n, countFirst++;
-            else if(countSecond == 0)
-                second = n, countSecond++;
+                count_second++;
+            else if(count_first == 0) 
+                first = n, count_first++;
+            else if(count_second == 0)
+                second = n, count_second++;
             else
-                countFirst--, countSecond--;
+                count_first--, count_second--;
         }
         
-        countFirst = countSecond = 0;
-        for(auto &n : nums) {
-            if(n == first) countFirst++;
-            else if(n == second) countSecond++;
+        count_first = count_second = 0;
+        for(int n : nums) {
+            if(n == first) 
+                count_first++;
+            else if(n == second) 
+                count_second++;
         }
         
         vector<int> result;
-        if(countFirst > nums.size()/3) result.push_back(first);
-        if(countSecond > nums.size()/3) result.push_back(second);
+        if(count_first > nums.size()/3) 
+            result.push_back(first);
+        if(count_second > nums.size()/3) 
+            result.push_back(second);
         
         return result;
     }

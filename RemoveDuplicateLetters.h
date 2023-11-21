@@ -5,12 +5,15 @@ public:
         vector<bool> in_stack (26, false);
         stack<int> saved_chars;
 
-        for(auto &c : s) 
+        for(char c : s) 
             char_frequency[c-'a']++;
 
-        for(auto i=0; i<s.length(); i++) {
+        for(int i = 0; i < s.length(); ++i) {
             char_frequency[s[i]-'a']--;
-            if(in_stack[s[i]-'a']) continue;
+
+            if(in_stack[s[i]-'a'] == true) {
+                continue;
+            }
 
             //if char c at top of stack is smaller than the current char, and there is still another c after the current index
             //we can pop that c from the stack

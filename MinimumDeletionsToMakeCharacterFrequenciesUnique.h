@@ -2,14 +2,16 @@ class Solution {
 public:
     int minDeletions(string s) {
         vector<int> frequency(26,0);
-        for(const auto& c : s)
-            frequency[c-'a']++;
+        for(char c : s) {
+            frequency[c-'a']++; 
+        }        
         sort(frequency.rbegin(), frequency.rend());
 
         int count_delete = 0;
         for(int i = 1; i < frequency.size(); ++i) {
-            if(frequency[i] == 0)
+            if(frequency[i] == 0) {
                 break;
+            }
 
             if(frequency[i] >= frequency[i-1]) {
                 int frequency_before_change = frequency[i];

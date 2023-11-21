@@ -11,10 +11,11 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        ListNode* node = new ListNode(0, head);
-        ListNode* previous = node;
+        ListNode* dummy = new ListNode(0, head);
+        ListNode* previous = dummy;
         
-        for(int i=0; i<left-1; i++) previous = previous->next;
+        for(int i = 0; i < left-1; ++i) 
+            previous = previous->next;
         
         ListNode *current = previous->next, *after;
         for(int i=0; i<right-left; i++) {
@@ -24,7 +25,7 @@ public:
             previous->next = after;
         }
         
-        return node->next;
+        return dummy->next;
     }
 };
 //https://leetcode.com/problems/reverse-linked-list-ii/

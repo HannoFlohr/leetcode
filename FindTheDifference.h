@@ -1,16 +1,30 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        unordered_map<char,int> dict;
-        for(auto &c : s)
-            dict[c]++;
+        unordered_map<char,int> letters;
         
-        for(auto &c : t) {
-            if(dict[c] == 0) return c;
-            else dict[c]--;
+        for(char c : s) {
+            ++letters[c];
+        }        
+        for(char c : t) {
+            if(letters[c] == 0) {
+                return c;
+            }
+            
+            --letters[c];
         }
         
         return ' ';
     }
 };
 //https://leetcode.com/problems/find-the-difference/
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        for(int i = 0; i < s.size(); ++i) {
+            t[i+1] += (t[i]-s[i]);
+        } 
+        return t.back();
+    }
+};

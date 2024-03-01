@@ -4,8 +4,8 @@ public:
         const int n = matrix.size();
         int min_falling_sum = INT_MAX;
 
-        for(int i=n-2; i>=0; i--) {
-            for(int j=0; j<n; j++) {
+        for(int i = n-2; i >= 0; i--) {
+            for(int j = 0; j < n; j++) {
                 if(j==0)
                     matrix[i][j] += min(matrix[i+1][j], matrix[i+1][j+1]);
                 else if(j==n-1)
@@ -15,10 +15,7 @@ public:
             }
         }
 
-        for(int j=0; j<n; j++)
-            min_falling_sum = min(min_falling_sum, matrix[0][j]);
-
-        return min_falling_sum;
+        return *min_element(matrix[0].begin(), matrix[0].end());
     }
 };
 //https://leetcode.com/problems/minimum-falling-path-sum/

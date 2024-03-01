@@ -2,13 +2,19 @@ class Solution {
 public:
     int minDifficulty(vector<int>& jobDifficulty, int days) {
         const int n = jobDifficulty.size();
-        if(n < days) return -1;
+        if(n < days) {
+            return -1;
+        }
         vector<int> dp (n, 1000), dp2 (n), stack;
         
-        for(int d=0; d<days; d++) {
+        for(int d = 0; d < days; ++d) {
             stack.clear();
-            for(int i=d; i<n; i++) {
-                dp2[i] = i ? dp[i-1] + jobDifficulty[i] : jobDifficulty[i];
+
+            for(int i = d; i < n; ++i) {
+                if(i > 0)
+                    dp2[i] = dp[i-1] + jobDifficulty[i];
+                else 
+                    dp2[i] = jobDifficulty[i];
                 
                 while(stack.size() && jobDifficulty[stack.back()] <= jobDifficulty[i]) {
                     int j = stack.back(); 

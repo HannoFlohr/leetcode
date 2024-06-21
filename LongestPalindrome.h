@@ -4,7 +4,7 @@ public:
         unordered_map<char, int> char_count;
         int odds = 0;
         //count the occurences of all chars in s
-        for(auto &c : s) 
+        for(char c : s) 
             char_count[c]++;
         //count chars with odd occurences
         for(auto &c : char_count) 

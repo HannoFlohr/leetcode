@@ -13,10 +13,11 @@ private:
 		when moving root from parent to child i, nodes_in_subtree[i] points get 1 closer to root and n - nodes_in_subtree[i] nodes get 1 further to root 
 		update distances: distances[i] = distances[root] - nodes_in_subtree[i] + n - nodes_in_subtree[i] 
 	*/
-    void dfs(const int& start, const int& previous, bool first_step) {
-        for(auto &i : graph[start]) {
-            if(i == previous) continue;
-
+    void dfs(int start, int previous, bool first_step) {
+        for(int i : graph[start]) {
+            if(i == previous) {
+                continue;
+            }
             if(first_step) {
                 dfs(i, start, first_step);
                 nodes_in_subtree[start] += nodes_in_subtree[i];

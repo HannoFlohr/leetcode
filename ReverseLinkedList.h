@@ -11,27 +11,9 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head, ListNode *after = NULL, ListNode *before = NULL) {
-        if(!head) return before;
-        else return reverseList(head->next, (head->next = before, after), head);
+        if(head == nullptr) 
+            return before;
+        return reverseList(head->next, (head->next = before, after), head);
     }
 };
 //https://leetcode.com/problems/reverse-linked-list/
-
-/* iterative solution
-
-class Solution {
-public:
-    ListNode* reverseList(ListNode* head) {
-        ListNode *after, *before = NULL;
-        while(head) {
-            after = head->next;
-            head->next = before;
-            before = head;
-            head = after;
-        }
-        
-        return before;
-    }
-};
-
-*/

@@ -1,15 +1,16 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> subs;
-        subs.emplace({});
+        vector<vector<int>> subs ({{}});
         
-        for(int i=0; i<nums.size(); i++) {
+        for(int num : nums) {
+            //copy current subsets
             vector<vector<int>> subsTmp = subs;
-            
-            for(int j=0; j<subsTmp.size(); j++)
-                subsTmp[j].push_back(nums[i]);
-            for(int j=0; j<subsTmp.size(); j++)
+            //add the new number to each of the copied subsets
+            for(vector<int>& sub : subs)
+                sub.push_back(num);
+            //add the updated subsets to the overall ones
+            for(int j = 0; j < subsTmp.size(); ++j)
                 subs.push_back(subsTmp[j]);
         }
         
@@ -17,7 +18,3 @@ public:
     }
 };
 //https://leetcode.com/problems/subsets/
-
-/*
-https://stackoverflow.com/questions/728972/finding-all-the-subsets-of-a-set/729603#729603
-*/

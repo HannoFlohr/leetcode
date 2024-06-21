@@ -1,12 +1,20 @@
 class Solution {
 public:
     int tribonacci(int n) {
-        vector<int> tri (38);
-        tri[0] = 0, tri[1] = 1, tri[2] = 1;
-        for(int i=3; i<=n; i++)
-            tri[i] = tri[i-1] + tri[i-2] + tri[i-3];
-        
-        return tri[n];
+        vector<int> T = {0,1,1};
+        if(n < 3) {
+            return T[n];
+        }
+        int tri;
+
+        for(int i = 3; i <= n; ++i) {
+            tri = T[0]+T[1]+T[2];
+            T[0] = T[1];
+            T[1] = T[2];
+            T[2] = tri; 
+        }
+
+        return T.back();
     }
 };
 //https://leetcode.com/problems/n-th-tribonacci-number/

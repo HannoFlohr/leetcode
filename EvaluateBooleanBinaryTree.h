@@ -12,9 +12,13 @@
 class Solution {
 public:
     bool evaluateTree(TreeNode* root) {
-        if(root->val == 2) return evaluateTree(root->left) | evaluateTree(root->right);
-        if(root->val == 3) return evaluateTree(root->left) & evaluateTree(root->right);
-        return root->val;
+        if(root->val < 2) {
+            return (bool)root->val;
+        } 
+        if(root->val == 2) {
+            return evaluateTree(root->left) || evaluateTree(root->right); 
+        }
+        return evaluateTree(root->left) && evaluateTree(root->right);
     }
 };
 //https://leetcode.com/problems/evaluate-boolean-binary-tree/

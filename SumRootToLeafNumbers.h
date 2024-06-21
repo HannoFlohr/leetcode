@@ -11,9 +11,7 @@
  */
 class Solution {
 private:
-    int root_leaf_sum = 0;
-    
-    void findRootLeafSum(TreeNode* root, int cur_sum) {
+    void findRootLeafSum(TreeNode* root, int cur_sum, int& root_leaf_sum) {
         cur_sum = 10 * cur_sum + root->val;
         
         if(!root->left && !root->right) {
@@ -21,14 +19,20 @@ private:
             return;
         }
         
-        if(root->left) findRootLeafSum(root->left, cur_sum);
-        if(root->right) findRootLeafSum(root->right, cur_sum);
+        if(root->left) { 
+            findRootLeafSum(root->left, cur_sum, root_leaf_sum);
+        }
+        if(root->right) { 
+            findRootLeafSum(root->right, cur_sum, root_leaf_sum);
+        }
     }
     
 public:
     int sumNumbers(TreeNode* root) {
-        if(root) 
-            findRootLeafSum(root, 0);
+        int root_leaf_sum = 0;
+        if(root) {
+            findRootLeafSum(root, 0, root_leaf_sum);
+        }
         return root_leaf_sum;
     }
 };

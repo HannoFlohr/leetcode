@@ -5,20 +5,20 @@ public:
         unordered_map<char,int> chars;
         
         //count chars in s;
-        for(const auto& c : s)
-            chars[c]++;        
+        for(char c : s){
+            chars[c]++;
+        }        
         //for each char in order check if it is present in s and append it to result if true
-        for(const auto& c : order) {
-            for(size_t j=0; j<chars[c]; j++)
+        for(char c : order) {
+            while(chars[c]-- > 0) {
                 result += c;
-            chars[c] = 0;
+            }
         }
         //add remaining chars of s
-        for(const auto& it : chars) {
-            if(it.second == 0) continue;
-
-            for(size_t j=0; j<it.second; j++) 
-                result += it.first;
+        for(auto [ch,freq] : chars) {
+            while(freq-- > 0) {
+                result += ch;
+            }
         }
 
         return result; 

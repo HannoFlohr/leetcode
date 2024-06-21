@@ -13,10 +13,10 @@ public:
                 frequency[x]--;
             }
         }
-        for(auto& [x,f] : frequency) {
-            while(f > 0) {
-                result.push_back(x);
-                f--;
+        for(auto it : frequency) {
+            while(it.second > 0) {
+                result.push_back(it.first);
+                --it.second;
             }
         } 
 

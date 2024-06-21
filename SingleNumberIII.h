@@ -1,13 +1,12 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        vector<int> singles (2,0);
-
-        //compute the XOR value and least significant bit
+        //compute the XOR value of the nums vector and find the least significant bit
         long lsb = accumulate(nums.begin(), nums.end(), 0, bit_xor<int>());
         lsb &= -lsb;
         
-        for(auto &n : nums) {
+        vector<int> singles (2,0);
+        for(int n : nums) {
             if((n & lsb) == 0) //bit not set
                 singles[0] ^= n;
             else //bit set

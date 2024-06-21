@@ -1,12 +1,11 @@
 class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-        vector<vector<int>> result;
-        int i=0;
-        
-        //increment while no overlapping before newInterval
-        while(i < intervals.size() && intervals[i][1] < newInterval[0]) 
+        int i = 0;
+        //increment while not overlapping before newInterval
+        while(i < intervals.size() && intervals[i][1] < newInterval[0]) {
             i++;
+        }
         
         //overlap -> merge
         int insert = i;
@@ -16,7 +15,7 @@ public:
             i++;
         }
         
-        //delete the overlappint intervals from insert to current i
+        //delete the overlapping interval(s) from insert to current i
         intervals.erase(intervals.begin()+insert, intervals.begin()+i);
         //insert new interval
         intervals.insert(intervals.begin()+insert, newInterval);

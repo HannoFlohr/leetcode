@@ -3,7 +3,10 @@ public:
     int findMaxK(vector<int>& nums) {
         set<int> numbers (nums.begin(), nums.end());
 
-        for(auto it = numbers.rbegin(); *it > 0 && it != numbers.rend(); ++it) {
+        for(auto it = numbers.rbegin(); it != numbers.rend(); ++it) { 
+            if(*it < 0) {
+                break;
+            }
             if(numbers.contains(-(*it))) {
                 return *it;
             }

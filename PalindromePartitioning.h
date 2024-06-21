@@ -1,38 +1,37 @@
 class Solution {
 private:
-    vector<vector<string>> palindrome_partitionings;
-    int string_length;
-
-    bool isPalindrome(string &s, int left, int right) {
-        while(left < right) 
-            if(s[left++] != s[right--])
+    bool isPalindrome(const string& s, int front, int back) {
+        while(front < back) {
+            if(s[front] != s[back]) {
                 return false;
-            
+            }
+            ++front;
+            --back;
+        }
         return true;
     }
 
-    void makePartitionings(string &s, vector<string> &partitioning, int start) {
-        if(start == string_length) {
-            palindrome_partitionings.push_back(partitioning);
+    void findPalindromes(const string& s, int start, vector<string>& current, vector<vector<string>>& palindromes) {
+        if(start == s.size()) {
+            palindromes.push_back(current);
             return;
         }
 
-        for(int i=start; i<string_length; i++) {
-            if(isPalindrome(s, start, i)) {
-                partitioning.push_back(s.substr(start, i-start+1));
-                makePartitionings(s, partitioning, i+1);
-                partitioning.pop_back();
+        for(int end = start+1; end <= s.size(); ++end) {
+            if(isPalindrome(s, start, end-1)) {
+                current.push_back(s.substr(start, end-start));
+                findPalindromes(s, end, current, palindromes);
+                current.pop_back();
             }
         }
     }
 
 public:
     vector<vector<string>> partition(string s) {
-        palindrome_partitionings.clear();
-        string_length = s.size();
-        vector<string> partitioning;
-        makePartitionings(s, partitioning, 0);
-        return palindrome_partitionings;
+        vector<vector<string>> palindromes;
+        vector<string> current;
+        findPalindromes(s, 0, current, palindromes);
+        return palindromes;
     }
 };
 //https://leetcode.com/problems/palindrome-partitioning/

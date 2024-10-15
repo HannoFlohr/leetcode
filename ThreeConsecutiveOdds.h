@@ -1,18 +1,17 @@
 class Solution {
 public:
     bool threeConsecutiveOdds(vector<int>& arr) {
-        int cur_streak = 0;
-        for(auto &n : arr) {
-            if(n % 2 == 1) {
-                cur_streak++;
-                if(cur_streak == 3)
-                    return true;
+        int count = 0;
+        for(int i = 0; i < arr.size() && count < 3; ++i) {
+            if(arr[i] % 2 == 1) {
+                ++count;
             }
-            else
-                cur_streak = 0;
+            else {
+                count = 0;
+            }
         }
 
-        return false;
+        return count == 3; 
     }
 };
 //https://leetcode.com/problems/three-consecutive-odds/

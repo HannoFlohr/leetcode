@@ -6,11 +6,9 @@ public:
             graph[edges[i][0]].push_back({edges[i][1], succProb[i]});
             graph[edges[i][1]].push_back({edges[i][0], succProb[i]});
         } 
-        //int c=0;for(auto &g : graph) {cout<<(c++)<<"";for(auto &i : g) {cout<<" | "<<i.first<<" "<<i.second<<" | ";}cout<<endl;}
 
         vector<double> probabilities (n, 0.0);
         probabilities[start] = 1.0;
-
         queue<int> q;
         q.push(start);
 

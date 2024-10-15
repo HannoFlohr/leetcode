@@ -6,7 +6,7 @@ public:
 
         int multiplier2 = 0, multiplier3 = 0, multiplier5 = 0, value2 = 2, value3 = 3, value5 = 5;
 
-        for(int i=1; i<n; i++) {
+        for(int i = 1; i < n; ++i) {
             ugly_numbers[i] = min({value2, value3, value5}); 
             if(ugly_numbers[i] == value2) 
                 value2 = ugly_numbers[++multiplier2] * 2;
@@ -16,7 +16,7 @@ public:
                 value5 = ugly_numbers[++multiplier5] * 5;
         }
 
-        return ugly_numbers[n-1]; 
+        return ugly_numbers.back(); 
     }
 };
 //https://leetcode.com/problems/ugly-number-ii/

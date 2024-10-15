@@ -3,13 +3,15 @@ class Solution {
 public:
     string largestNumber(vector<int>& nums) {
         vector<string> strings;
-        for(auto &n : nums) strings.push_back(to_string(n));
-        sort(begin(strings), end(strings), [](string& s1, string& s2){ return s1+s2>s2+s1;} );
+        for(int num : nums) 
+            strings.push_back(to_string(num));
+        sort(begin(strings), end(strings), [](string& s1, string& s2){ return s1+s2 > s2+s1;} );
 
-        if(strings[0] == "0") return "0";
+        if(strings[0] == "0") 
+            return "0";
 
         string number = "";
-        for(auto &s : strings)
+        for(string& s : strings)
             number += s;
 
         return number;
@@ -25,7 +27,7 @@ public:
         if(nums[0] == 0) return "0";
 
         string number = "";
-        for(auto &n : nums)
+        for(int num : nums)
             number += to_string(n);
 
         return number;

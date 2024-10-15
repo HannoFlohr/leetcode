@@ -10,26 +10,30 @@ public:
         int keep_edges = 0;
 
         for(int type = 3; type > 0; --type) {
-            auto disjointset_one = disjointset_both;
-            auto &ds = type == 3 ? disjointset_both : disjointset_one;
+            vector<int> disjointset_one = disjointset_both;
+            vector<int>& ds = (type == 3) ? disjointset_both : disjointset_one;
 
-            for(auto& edge : edges) {
-                if(edge[0] != type)
+            for(vector<int>& edge : edges) {
+                if(edge[0] != type) {
                     continue;
+                }
 
                 int i = find(ds, edge[1]), j = find(ds, edge[2]);
-                if(i == j) 
+                if(i == j) { 
                     continue;
+                }
 
                 ++keep_edges;
-                if(ds[j] < ds[i])
+                if(ds[j] < ds[i]) {
                     swap(i,j);
+                }
                 ds[i] += ds[j];
                 ds[j] = i;
             }
 
-            if(type != 3 && ds[find(ds, 1)] != -n)
+            if(type != 3 && ds[find(ds, 1)] != -n) {
                 return -1;
+            }
         }
 
         return edges.size() - keep_edges;

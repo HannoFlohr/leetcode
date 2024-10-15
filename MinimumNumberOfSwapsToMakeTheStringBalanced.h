@@ -2,11 +2,11 @@ class Solution {
 public:
     int minSwaps(string s) {
         int open = 0;
-        for(auto &c : s) {
+        for(char c : s) {
             if(c == '[')
-                open++;
-            else 
-                if(open != 0) open--;
+                ++open;
+            else if(open != 0) 
+                --open;
         }
 
         return (open + 1) / 2;

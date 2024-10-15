@@ -9,7 +9,7 @@ public:
     int strangePrinter(string s) {
         reduce(s);
         
-        const int& n = s.size();
+        const int n = s.size();
         vector<vector<int>> dp (n+1, vector<int>(n+1, 0)); //dp[i][j]: minimum prints for substring from i to j
         int end, prints;
 

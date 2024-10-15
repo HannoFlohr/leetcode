@@ -11,20 +11,20 @@
 class Solution {
 public:
     vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
+        const vector<vector<int>> directions {{0,1}, {1,0}, {0,-1}, {-1,0}};
         vector<vector<int>> spiral (m, vector<int>(n, -1));
-        
-        vector<vector<int>> directions {{0,1}, {1,0}, {0,-1}, {-1,0}};
-        int curDirection=0, i=0, j=-1;
+        int curDirection = 0, i = 0, j = -1;
         vector<int> stepsToTake {n, m-1};
         
-        while( head && stepsToTake[curDirection % 2] ) {
-            for(int k=0; k<stepsToTake[curDirection%2]; k++) {
+        while(head != nullptr && stepsToTake[curDirection % 2]) {
+            for(int k = 0; k < stepsToTake[curDirection%2]; ++k) {
                 i += directions[curDirection][0];
                 j += directions[curDirection][1];
                 spiral[i][j] = head->val;
                 
                 head = head->next;
-                if(!head) break;
+                if(head == nullptr) 
+                    break;
             }
             
             stepsToTake[curDirection%2]--;

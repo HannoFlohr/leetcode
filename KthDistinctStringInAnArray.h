@@ -1,16 +1,14 @@
 class Solution {
 public:
     string kthDistinct(vector<string>& arr, int k) {
-        unordered_map<string,int> frequency;
+        unordered_map<string,int> count;
+
         for(string& s : arr) {
-            frequency[s]++;
+            ++count[s];
         }
 
         for(string& s : arr) {
-            if(frequency[s] != 1) {
-                continue;
-            }
-            if(--k == 0) {
+            if(count[s] == 1 && --k == 0) {
                 return s;
             }
         }

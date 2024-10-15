@@ -12,14 +12,14 @@
 class Solution {
 private:
     void setValues(TreeNode* node, int& sum_of_bigger_values) {
-        if(node->right != nullptr)
+        if(node->right != nullptr) {
             setValues(node->right, sum_of_bigger_values);
-        
+        }
         sum_of_bigger_values += node->val;
         node->val = sum_of_bigger_values;
-
-        if(node->left != nullptr)
+        if(node->left != nullptr) {
             setValues(node->left, sum_of_bigger_values);
+		}
     }
 
 public:

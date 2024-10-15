@@ -7,12 +7,14 @@ class Solution {
             return;
         }
         
-        for(int i=index; i<candidates.size(); i++) {
-            if(candidates[i] > target) break; 
-            
-            if(i>index && candidates[i] == candidates[i-1])
+        for(int i = index; i < candidates.size(); ++i) {
+            if(candidates[i] > target) {
+                break; 
+            }
+            if(i > index && candidates[i] == candidates[i-1]) {
                 continue;
-            
+            }
+
             combination.push_back(candidates[i]);
             combine(candidates, combination, target-candidates[i], i+1);
             combination.pop_back();
@@ -21,6 +23,7 @@ class Solution {
     
 public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        result.clear();
         sort(candidates.begin(), candidates.end());
         vector<int> combination;
         combine(candidates, combination, target, 0);

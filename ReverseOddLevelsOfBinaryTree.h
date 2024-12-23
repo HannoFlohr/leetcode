@@ -11,10 +11,11 @@
  */
 class Solution {
 
-void reverseOddLevels(TreeNode* root, TreeNode* root2, int level=0) {
-    if((root->left==NULL && root->right==0) || (root->left==NULL && root->right==0)) return;
+void reverseOddLevels(TreeNode* root, TreeNode* root2, int level = 0) {
+    if(root->left == nullptr || root->left == nullptr) 
+        return;
         
-    if(!(level&1)) {
+    if(!(level & 1)) {
         int val = root->left->val;
         root->left->val = root2->right->val;
         root2->right->val = val;
